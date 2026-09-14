@@ -1,6 +1,9 @@
 name: Activity Bot
 
 on:
+  schedule:
+    - cron: "*/5 * * * *"
+      timezone: "America/Sao_Paulo"
   workflow_dispatch:
 
 permissions:
