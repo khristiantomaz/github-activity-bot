@@ -1,0 +1,12 @@
+name: Activity Bot
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Teste
+        run: echo "Bot funcionando!"
