@@ -3,10 +3,25 @@ name: Activity Bot
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
-  test:
+  activity:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Teste
-        run: echo "Bot funcionando!"
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Registrar atividade
+        run: |
+          echo "- Atividade registrada em $(date '+%Y-%m-%d %H:%M:%S')" >> activity.md
+
+      - name: Commit e Push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add activity.md
+          git commit -m "chore: update activity"
+          git push
